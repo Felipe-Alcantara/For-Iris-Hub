@@ -5,6 +5,7 @@ import { spawnSync } from 'node:child_process';
 const root = process.cwd();
 const projectsDir = path.join(root, 'Projects');
 const docsDir = path.join(root, 'docs');
+const repoBasePath = `/${path.basename(root)}`;
 
 const summary = [];
 
@@ -40,7 +41,7 @@ function resolveProjectMeta(slug, fallbackName) {
   };
 }
 
-function renderHubPage(entries) {
+function renderHubPage(entries, basePath) {
   const html = `<!doctype html>
 <html lang="pt-BR">
   <head>
@@ -224,7 +225,7 @@ function renderHubPage(entries) {
       <section class="grid" id="projects"></section>
 
       <footer class="note">
-        Projetos publicados com base <code>/for-iris-hub/&lt;slug&gt;/</code>. Atualize <code>Projects/projects.meta.json</code> para personalizar título, descrição e tags.
+        Projetos publicados com base <code>${basePath}/&lt;slug&gt;/</code>. Atualize <code>Projects/projects.meta.json</code> para personalizar título, descrição e tags.
       </footer>
     </div>
 
@@ -369,7 +370,7 @@ const hubEntries = summary
   .filter((item) => item.action === 'built' || item.action === 'copied')
   .map((item) => ({
     slug: item.slug,
-    href: `/for-iris-hub/${item.slug}/`,
+    href: `${repoBasePath}/${item.slug}/`,
     title: item.meta.title,
     subtitle: item.meta.subtitle,
     description: item.meta.description,
@@ -378,6 +379,6 @@ const hubEntries = summary
     externalUrl: item.meta.externalUrl ?? null,
   }));
 
-renderHubPage(hubEntries);
+renderHubPage(hubEntries, repoBasePath);
 
 console.log('Resumo de build:', JSON.stringify(summary, null, 2));
