@@ -40,11 +40,10 @@ Após o build, copie o diretório gerado (`dist/`, `build/` etc.) para `docs/<sl
 
 ```bash
 node .github/scripts/build-projects.mjs
-npx http-server docs/ -p 8080
-# ou use seu servidor estático favorito
+node scripts/serve-hub.mjs
 ```
 
-Abra `http://localhost:8080` para navegar pelo hub. Cada card aponta para `/for-iris-hub/<slug>/`.
+O script abre um servidor estático em `http://localhost:8080/For-Iris-Hub/`, reproduzindo exatamente o prefixo exigido pelo GitHub Pages. Pressione `Ctrl+C` para encerrar quando terminar.
 
 > 💡 `node .github/scripts/build-projects.mjs` instala dependências, roda `npm run build` em cada projeto e recria `docs/index.html` com os dados de `Projects/projects.meta.json`.
 
