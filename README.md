@@ -1,0 +1,2 @@
+# For Iris Hub
+For Iris Hub é um portal pessoal que reúne meus projetos e criações feitas para a Íris — desde mini-jogos e sites temáticos até textos e experimentos interativos. O objetivo é manter tudo organizado em um único repositório hospedado via GitHub Pages, com pastas separadas para cada projeto e workflows automáticos para build/deploy. Projetos pesados podem ficar em repositórios separados, mas aparecerão listados e acessíveis a partir deste hub.
