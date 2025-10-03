@@ -42,7 +42,39 @@ function resolveProjectMeta(slug, fallbackName) {
 }
 
 function renderHubPage(entries, basePath) {
-  const html = `<!doctype html>
+  const targetPath = path.join(docsDir, 'index.html');
+  const serializedProjects = JSON.stringify(entries, null, 2);
+
+  const replaceProjectsBlock = (content) => {
+    const projectsBlockRegex = /(^(\s*)const projects = [\s\S]*?\];)/m;
+    const match = content.match(projectsBlockRegex);
+    if (!match) {
+      return null;
+    }
+
+    const [, originalBlock, indent = ''] = match;
+    const newline = content.includes('\r\n') ? '\r\n' : '\n';
+    const formattedProjects = serializedProjects
+      .split('\n')
+      .map((line, index) => (index === 0 ? line : `${indent}  ${line}`))
+      .join(newline);
+
+    const replacement = `${indent}const projects = ${formattedProjects};`;
+    return content.replace(originalBlock, replacement);
+  };
+
+  if (existsSync(targetPath)) {
+    const baseContent = readFileSync(targetPath, 'utf8');
+    const updated = replaceProjectsBlock(baseContent);
+
+    if (updated) {
+      writeFileSync(targetPath, updated, 'utf8');
+      return;
+    }
+    console.warn('⚠️  Não foi possível atualizar bloco de projetos em docs/index.html. Aplicando fallback padrão.');
+  }
+
+  const fallbackTemplate = `<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
@@ -230,7 +262,7 @@ function renderHubPage(entries, basePath) {
     </div>
 
     <script>
-      const projects = ${JSON.stringify(entries, null, 2)};
+      const projects = __PROJECTS_JSON__;
       const container = document.getElementById('projects');
 
       projects.forEach((project) => {
@@ -272,7 +304,8 @@ function renderHubPage(entries, basePath) {
   </body>
 </html>`;
 
-  writeFileSync(path.join(docsDir, 'index.html'), html, 'utf8');
+  const fallback = fallbackTemplate.replace('__PROJECTS_JSON__', serializedProjects);
+  writeFileSync(targetPath, fallback, 'utf8');
 }
 
 function toKebab(name) {
