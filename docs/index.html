@@ -3,18 +3,36 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>For Iris Hub 💜 — projetos</title>
+    <title>For Iris Hub 💕 — projetos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        color-scheme: light dark;
-        --bg: #f6f7fb;
-        --bg-card: rgba(255, 255, 255, 0.85);
-        --border: rgba(20, 24, 39, 0.08);
-        --accent: #a855f7;
-        --accent-strong: #7c3aed;
-        --fg: #1f1b2e;
-        --muted: #5e5875;
-        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color-scheme: light;
+        --bg: #fff6fb;
+        --bg-secondary: #ffeef7;
+        --bg-accent: #f3f7ff;
+        --text-primary: #4a3651;
+        --text-muted: #9a81a4;
+        --text-soft: #b199bd;
+        --text-card: #5d4471;
+        --text-card-muted: #aa90c3;
+        --tag-text: #c06ca2;
+        --border-soft: rgba(255, 174, 200, 0.45);
+        --accent-rose: #ff9ac1;
+        --accent-rose-strong: #ff7da7;
+        --accent-lilac: #c7b8ff;
+        --accent-sky: #a8d8ff;
+        --accent-mint: #c6f5d5;
+        --accent-peach: #ffd9b3;
+        --glass-bg: rgba(255, 255, 255, 0.78);
+        --shadow: 0 24px 48px -32px rgba(255, 122, 167, 0.55);
+        --radius-pill: 999px;
+        font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
       *, *::before, *::after { box-sizing: border-box; }
@@ -22,236 +40,883 @@
       body {
         margin: 0;
         min-height: 100vh;
-        background: linear-gradient(180deg, rgba(240, 241, 250, 1) 0%, rgba(245, 236, 255, 1) 45%, rgba(240, 250, 252, 1) 100%);
+        background: radial-gradient(circle at 10% 20%, rgba(255, 214, 229, 0.68), transparent 55%),
+          radial-gradient(circle at 90% 20%, rgba(193, 181, 255, 0.48), transparent 50%),
+          linear-gradient(180deg, #fff6fb 0%, #fdf1ff 40%, #f3f7ff 100%);
+        color: var(--text-primary);
         display: flex;
-        align-items: flex-start;
         justify-content: center;
-        padding: 48px 24px 96px;
-        color: var(--fg);
+        padding: 64px 18px 120px;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(circle, rgba(255, 170, 200, 0.24), transparent 70%);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      body::before {
+        top: -120px;
+        left: -120px;
+      }
+
+      body::after {
+        bottom: -140px;
+        right: -120px;
+        background: radial-gradient(circle, rgba(193, 181, 255, 0.26), transparent 70%);
       }
 
       .shell {
-        width: min(1060px, 100%);
+        width: min(1100px, 100%);
         display: grid;
-        gap: 32px;
+        gap: 48px;
+        position: relative;
+        z-index: 1;
       }
 
       header {
+        position: relative;
         display: grid;
-        gap: 12px;
+        gap: 14px;
         text-align: center;
+        padding: 40px 24px 48px;
+        border-radius: 44px;
+        background: var(--glass-bg);
+        border: 1px solid var(--border-soft);
+        box-shadow: 0 30px 60px -40px rgba(140, 111, 164, 0.35);
+        backdrop-filter: blur(22px);
+      }
+
+      header::before,
+      header::after {
+        content: "✨";
+        font-size: 1.5rem;
+        position: absolute;
+        opacity: 0.55;
+      }
+
+      header::before {
+        top: 26px;
+        left: 32px;
+      }
+
+      header::after {
+        bottom: 24px;
+        right: 34px;
+      }
+
+      .header-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 8px 20px;
+        border-radius: var(--radius-pill);
+        background: linear-gradient(135deg, rgba(255, 214, 229, 0.92), rgba(193, 181, 255, 0.92));
+        color: var(--text-primary);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        width: fit-content;
+        margin: 0 auto 4px;
+        box-shadow: 0 16px 32px -28px rgba(193, 181, 255, 0.9);
       }
 
       h1 {
-        font-size: clamp(2rem, 4vw, 2.5rem);
+        font-family: "Parisienne", "Poppins", cursive;
+        font-size: clamp(2.8rem, 6vw, 4.4rem);
         margin: 0;
+        color: var(--accent-rose-strong);
+        text-shadow: 0 10px 30px rgba(255, 122, 167, 0.45);
+      }
+
+      h1 span {
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
+        margin-left: 12px;
+        vertical-align: middle;
       }
 
       p.subtitle {
         margin: 0 auto;
-        max-width: 620px;
-        color: var(--muted);
-        font-size: 1rem;
+        max-width: 640px;
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
       }
 
-      .grid {
+      p.subtitle.soft {
+        max-width: 520px;
+        font-size: 0.95rem;
+        color: var(--text-soft);
+      }
+
+      code {
+        font-family: "Fira Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        font-size: 0.85em;
+        padding: 2px 6px;
+        border-radius: 8px;
+        background: rgba(255, 214, 229, 0.4);
+        color: var(--text-primary);
+      }
+
+      .sticker-cloud {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(12px, 5vw, 32px);
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        pointer-events: none;
+      }
+
+      .sticker-cloud span {
+        animation: floaty 6s ease-in-out infinite;
+      }
+
+      .sticker-cloud span:nth-child(2) { animation-delay: 1.2s; }
+      .sticker-cloud span:nth-child(3) { animation-delay: 2.1s; }
+      .sticker-cloud span:nth-child(4) { animation-delay: 3s; }
+      .sticker-cloud span:nth-child(5) { animation-delay: 3.8s; }
+
+      .carousel {
         display: grid;
-        gap: 20px;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      }
-
-      .card {
+        gap: 24px;
         position: relative;
-        display: grid;
-        gap: 16px;
-        padding: 24px;
-        border-radius: 20px;
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        box-shadow: 0 24px 60px -30px rgba(107, 33, 168, 0.3);
-        backdrop-filter: blur(12px);
-        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       }
 
-      .card::after {
+      .carousel-heading {
+        display: grid;
+        gap: 10px;
+        text-align: center;
+        max-width: 540px;
+        margin: 0 auto;
+      }
+
+      .carousel-heading h2 {
+        margin: 0;
+        font-size: clamp(1.7rem, 4vw, 2.3rem);
+        color: var(--accent-rose-strong);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .carousel-heading p {
+        margin: 0;
+        font-size: 0.98rem;
+        color: var(--text-muted);
+      }
+
+      .carousel-wrapper {
+        position: relative;
+        padding: 0 clamp(32px, 6vw, 92px);
+      }
+
+      .carousel-wrapper.is-compact {
+        max-width: min(640px, 100%);
+        margin: 0 auto;
+        padding: 0 clamp(12px, 4vw, 28px);
+      }
+
+      .carousel-track {
+        display: flex;
+        gap: 28px;
+        overflow-x: auto;
+        padding: 24px 4px 24px;
+        margin: 0 -4px;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        cursor: grab;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 154, 193, 0.65) transparent;
+      }
+
+      .carousel-track.is-compact {
+        gap: 24px;
+      }
+
+      .carousel-track.is-compact .carousel-card {
+        flex: 0 0 clamp(360px, 78vw, 520px);
+      }
+
+      .carousel-track.is-grabbing {
+        cursor: grabbing;
+      }
+
+      .carousel-track::-webkit-scrollbar {
+        height: 10px;
+      }
+
+      .carousel-track::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: var(--radius-pill);
+      }
+
+      .carousel-track::-webkit-scrollbar-thumb {
+        border-radius: var(--radius-pill);
+        background: linear-gradient(135deg, rgba(255, 154, 193, 0.75), rgba(193, 181, 255, 0.8));
+      }
+
+      .carousel-card {
+        position: relative;
+        flex: 0 0 min(320px, 82vw);
+        scroll-snap-align: center;
+        padding: 32px 26px 30px;
+        border-radius: 34px;
+        background: var(--card-bg, var(--glass-bg));
+        border: 2px solid var(--card-border, rgba(255, 255, 255, 0.6));
+        box-shadow: var(--card-shadow, var(--shadow));
+        backdrop-filter: blur(18px);
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+      }
+
+      .carousel-card:hover {
+        transform: translateY(-10px) rotate(-0.8deg);
+        box-shadow: 0 30px 60px -34px rgba(255, 164, 204, 0.65);
+      }
+
+      .carousel-card::after {
         content: "";
         position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        border: 1px solid transparent;
+        inset: 18px;
+        border-radius: 26px;
+        border: 1px dashed rgba(255, 255, 255, 0.8);
         pointer-events: none;
-        transition: border-color 0.25s ease;
+        opacity: 0.9;
       }
 
-      .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 32px 70px -28px rgba(107, 33, 168, 0.5);
+      .carousel-card.theme-rose {
+        --card-bg: linear-gradient(160deg, rgba(255, 246, 250, 0.95), rgba(255, 214, 229, 0.8));
+        --card-border: rgba(255, 154, 193, 0.5);
+        --card-shadow: 0 28px 50px -30px rgba(255, 154, 193, 0.75);
       }
 
-      .card:hover::after {
-        border-color: rgba(168, 85, 247, 0.35);
+      .carousel-card.theme-lilac {
+        --card-bg: linear-gradient(155deg, rgba(244, 240, 255, 0.96), rgba(214, 199, 255, 0.82));
+        --card-border: rgba(193, 181, 255, 0.55);
+        --card-shadow: 0 28px 52px -30px rgba(193, 181, 255, 0.7);
       }
 
-      .card h2 {
-        margin: 0;
-        font-size: 1.3rem;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+      .carousel-card.theme-sky {
+        --card-bg: linear-gradient(160deg, rgba(236, 246, 255, 0.96), rgba(168, 216, 255, 0.78));
+        --card-border: rgba(168, 216, 255, 0.55);
+        --card-shadow: 0 28px 52px -30px rgba(168, 216, 255, 0.7);
       }
 
-      .card h2 span {
+      .carousel-card.theme-mint {
+        --card-bg: linear-gradient(160deg, rgba(240, 255, 246, 0.95), rgba(198, 245, 213, 0.78));
+        --card-border: rgba(198, 245, 213, 0.6);
+        --card-shadow: 0 28px 52px -30px rgba(198, 245, 213, 0.65);
+      }
+
+      .carousel-card.theme-peach {
+        --card-bg: linear-gradient(160deg, rgba(255, 245, 237, 0.95), rgba(255, 217, 179, 0.78));
+        --card-border: rgba(255, 217, 179, 0.6);
+        --card-shadow: 0 28px 52px -30px rgba(255, 217, 179, 0.65);
+      }
+
+      .card-sticker {
+        position: absolute;
+        top: -26px;
+        left: 28px;
+        font-size: 2.4rem;
+        filter: drop-shadow(0 12px 20px rgba(140, 111, 164, 0.35));
+      }
+
+      .carousel-card h2 {
+        margin: 12px 0 8px;
+        font-size: 1.35rem;
+        line-height: 1.3;
+        display: grid;
+        gap: 4px;
+      }
+
+      .card-subtitle {
         font-size: 0.95rem;
         font-weight: 500;
-        color: var(--muted);
+        color: var(--text-card-muted);
       }
 
-      .card p {
-        margin: 0;
-        color: var(--muted);
+      .card-description {
+        margin: 0 0 16px;
+        color: var(--text-card);
         line-height: 1.6;
-        font-size: 0.95rem;
+        font-size: 0.98rem;
       }
 
-      .tags {
+      .card-tags {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 18px;
         display: flex;
+        gap: 10px;
         flex-wrap: wrap;
-        gap: 8px;
       }
 
-      .tag {
-        font-size: 0.75rem;
+      .card-tag {
+        font-size: 0.78rem;
         font-weight: 600;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: rgba(168, 85, 247, 0.12);
-        color: var(--accent-strong);
+        padding: 6px 12px;
+        border-radius: var(--radius-pill);
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 154, 193, 0.4);
+        color: var(--tag-text);
       }
 
-      .actions {
-        margin-top: 8px;
+      .card-actions {
         display: flex;
         justify-content: flex-end;
       }
 
-      .actions a {
+      .card-actions a {
         display: inline-flex;
         align-items: center;
         gap: 8px;
         text-decoration: none;
-        padding: 10px 16px;
-        border-radius: 999px;
         font-weight: 600;
+        padding: 12px 20px;
+        border-radius: var(--radius-pill);
+        background: linear-gradient(135deg, var(--accent-rose-strong), var(--accent-lilac));
         color: white;
-        background: linear-gradient(120deg, var(--accent) 0%, var(--accent-strong) 100%);
-        box-shadow: 0 12px 24px -15px rgba(124, 58, 237, 0.8);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 18px 30px -22px rgba(255, 122, 167, 0.9);
+        transition: transform 0.22s ease, box-shadow 0.22s ease;
       }
 
-      .actions a:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 14px 32px -18px rgba(124, 58, 237, 0.9);
+      .card-actions a:hover,
+      .card-actions a:focus-visible {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 20px 36px -20px rgba(193, 181, 255, 0.8);
+      }
+
+      .card-actions a:focus-visible {
+        outline: 3px solid rgba(193, 181, 255, 0.7);
+        outline-offset: 3px;
+      }
+
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, var(--accent-rose-strong), var(--accent-lilac));
+        color: white;
+        font-size: 1.8rem;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        box-shadow: 0 22px 36px -22px rgba(193, 181, 255, 0.85);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+      }
+
+      .carousel-btn:hover,
+      .carousel-btn:focus-visible {
+        transform: translateY(-50%) scale(1.05);
+        box-shadow: 0 28px 48px -26px rgba(193, 181, 255, 0.9);
+        outline: none;
+      }
+
+      .carousel-btn:focus-visible {
+        outline: 3px solid rgba(255, 192, 220, 0.8);
+        outline-offset: 4px;
+      }
+
+      .carousel-btn[data-direction="prev"] {
+        left: clamp(0px, 2vw, 24px);
+      }
+
+      .carousel-btn[data-direction="next"] {
+        right: clamp(0px, 2vw, 24px);
+      }
+
+      .carousel-wrapper.is-compact .carousel-btn[data-direction="prev"] {
+        left: clamp(-18px, -4vw, -6px);
+      }
+
+      .carousel-wrapper.is-compact .carousel-btn[data-direction="next"] {
+        right: clamp(-18px, -4vw, -6px);
+      }
+
+      .carousel-btn:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        transform: translateY(-50%);
+        box-shadow: none;
+      }
+
+      .carousel-dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding-bottom: 4px;
+      }
+
+      .carousel-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 154, 193, 0.32);
+        cursor: pointer;
+        transition: transform 0.22s ease, background 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .carousel-dot:hover,
+      .carousel-dot:focus-visible {
+        transform: scale(1.18);
+        background: rgba(255, 154, 193, 0.6);
+        outline: none;
+      }
+
+      .carousel-dot.is-active {
+        background: linear-gradient(135deg, var(--accent-rose-strong), var(--accent-lilac));
+        transform: scale(1.3);
+        box-shadow: 0 14px 26px -18px rgba(255, 122, 167, 0.9);
       }
 
       footer.note {
-        margin-top: 12px;
-        font-size: 0.85rem;
-        color: var(--muted);
         text-align: center;
+        font-size: 0.92rem;
+        color: var(--text-soft);
+        padding: 20px 28px;
+        border-radius: 32px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px dashed rgba(255, 154, 193, 0.55);
+        box-shadow: 0 20px 40px -34px rgba(140, 111, 164, 0.35);
+        backdrop-filter: blur(18px);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
       }
 
-      @media (max-width: 640px) {
-        body { padding: 32px 16px 64px; }
-        .card { padding: 20px; }
-        .actions { justify-content: flex-start; }
+      button {
+        font: inherit;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      a:focus-visible {
+        outline: 3px solid rgba(255, 174, 200, 0.8);
+        outline-offset: 3px;
+      }
+
+      @keyframes floaty {
+        0%, 100% { transform: translateY(0px) rotate(-2deg); }
+        50% { transform: translateY(-12px) rotate(2deg); }
+      }
+
+      @media (max-width: 900px) {
+        header {
+          padding: 36px 22px 40px;
+        }
+
+        .carousel-wrapper {
+          padding: 0 clamp(16px, 5vw, 60px);
+        }
+
+        .carousel-btn {
+          width: 52px;
+          height: 52px;
+          font-size: 1.6rem;
+        }
+      }
+
+      @media (max-width: 680px) {
+        body {
+          padding: 48px 14px 80px;
+        }
+
+        header {
+          border-radius: 32px;
+        }
+
+        .carousel-card {
+          flex-basis: min(84vw, 320px);
+        }
+
+        .carousel-btn {
+          display: none;
+        }
+
+        .carousel-wrapper {
+          padding: 0 2px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: clamp(2.4rem, 12vw, 3.2rem);
+        }
+
+        .sticker-cloud {
+          font-size: clamp(1.6rem, 8vw, 2rem);
+        }
+
+        .carousel-track {
+          gap: 22px;
+        }
+
+        .carousel-card {
+          padding: 28px 22px 26px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+
+        .carousel-track {
+          scroll-behavior: auto;
+        }
       }
     </style>
   </head>
   <body>
     <div class="shell">
       <header>
-        <h1>For Iris Hub 💜</h1>
+        <span class="header-badge">✨ Hubzinho da Íris ✨</span>
+        <h1>For Iris Hub <span aria-hidden="true">💕</span></h1>
         <p class="subtitle">
-          Coleção de projetos publicada automaticamente a partir da pasta <code>Projects/</code>. Cada card leva para a versão hospedada no GitHub Pages.
+          Coleção de projetinhos feitos com carinho demais! Tudo que mora em <code>Projects/</code> aparece aqui como um mini parque de diversões coquette.
+        </p>
+        <p class="subtitle soft">
+          Salve seus favoritos, compartilhe com quem ama e explore arrastando os cards fofinhos.
         </p>
       </header>
 
-      <section class="grid" id="projects"></section>
+      <div class="sticker-cloud" aria-hidden="true">
+        <span>💌</span>
+        <span>🎀</span>
+        <span>🧁</span>
+        <span>🌷</span>
+        <span>💖</span>
+      </div>
+
+      <section class="carousel" aria-labelledby="carousel-title">
+        <div class="carousel-heading">
+          <h2 id="carousel-title">Projetinhos brilhando ✨</h2>
+          <p>Arraste para o lado ou toque nas setinhas para passear pelos cards românticos.</p>
+        </div>
+        <div class="carousel-wrapper">
+          <button class="carousel-btn" type="button" data-direction="prev" aria-label="Ver projeto anterior">
+            <span aria-hidden="true">‹</span>
+          </button>
+          <div class="carousel-track" id="projects-track" role="list"></div>
+          <button class="carousel-btn" type="button" data-direction="next" aria-label="Ver próximo projeto">
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+        <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Projetos disponíveis"></div>
+      </section>
 
       <footer class="note">
-        Projetos publicados nesta mesma pasta do GitHub Pages (ex.: <code>/for-iris-hub/&lt;slug&gt;/</code>). Atualize <code>Projects/projects.meta.json</code> para personalizar título, descrição e tags.
+        Projetos publicados nesta mesma pasta do GitHub Pages (ex.: <code>/for-iris-hub/&lt;slug&gt;/</code>). Atualize <code>Projects/projects.meta.json</code> para personalizar título, descrição e tags. Tudo se atualiza automaticamente — só amor! 💘
       </footer>
     </div>
 
     <script>
       const projects = [
-  {
-    "slug": "if",
-    "href": "./if/",
-    "title": "IF — Playlist Especial",
-    "subtitle": "HTML estático",
-    "description": "Landing page delicada com carta e playlist dedicada para Íris.",
-    "tags": [
-      "HTML",
-      "CSS"
-    ],
-    "linkText": "Abrir projeto →",
-    "externalUrl": null
-  },
-  {
-    "slug": "spicy-game",
-    "href": "./spicy-game/",
-    "title": "Couple Night — Game Kit",
-    "subtitle": "React · Vite · Tailwind",
-    "description": "Jogos e desafios para casal, construído como SPA com animações e motion design.",
-    "tags": [
-      "React",
-      "Vite",
-      "Tailwind"
-    ],
-    "linkText": "Abrir projeto →",
-    "externalUrl": null
-  }
-];
-      const container = document.getElementById('projects');
+        {
+          "slug": "if",
+          "href": "./if/",
+          "title": "IF — Playlist Especial",
+          "subtitle": "HTML estático",
+          "description": "Landing page delicada com carta e playlist dedicada para Íris.",
+          "tags": ["HTML", "CSS"],
+          "linkText": "Abrir projeto →",
+          "externalUrl": null
+        },
+        {
+          "slug": "spicy-game",
+          "href": "./spicy-game/",
+          "title": "Couple Night — Game Kit",
+          "subtitle": "React · Vite · Tailwind",
+          "description": "Jogos e desafios para casal, construído como SPA com animações e motion design.",
+          "tags": ["React", "Vite", "Tailwind"],
+          "linkText": "Abrir projeto →",
+          "externalUrl": null
+        }
+      ];
 
-      projects.forEach((project) => {
-        const card = document.createElement('article');
-        card.className = 'card';
+  const wrapper = document.querySelector(".carousel-wrapper");
+  const track = document.getElementById("projects-track");
+      const dotsContainer = document.getElementById("carousel-dots");
+      const prevBtn = document.querySelector('.carousel-btn[data-direction="prev"]');
+      const nextBtn = document.querySelector('.carousel-btn[data-direction="next"]');
 
-        const title = document.createElement('h2');
-        title.append(project.title);
-        const subtitle = document.createElement('span');
+      const themeClasses = ["rose", "lilac", "sky", "mint", "peach"];
+      const stickerEmojis = ["💌", "🎀", "🧁", "🌸", "💖", "🍓", "🪞", "🍰"];
+
+      const LOOP = true;
+      const AUTOPLAY_INTERVAL = 4800;
+      const AUTOPLAY_RESUME_DELAY = 6200;
+
+      const cards = [];
+      const dots = [];
+      let currentIndex = 0;
+      let isProgrammaticScroll = false;
+      let scrollRestTimer = null;
+      let ticking = false;
+      let autoplayId = null;
+      let resumeTimeoutId = null;
+
+      const userPrefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const autoplayShouldRun = !userPrefersReducedMotion;
+
+      const createTag = (value) => {
+        const tag = document.createElement("li");
+        tag.className = "card-tag";
+        tag.textContent = value;
+        return tag;
+      };
+
+      projects.forEach((project, index) => {
+        const card = document.createElement("article");
+        card.className = `carousel-card theme-${themeClasses[index % themeClasses.length]}`;
+        card.setAttribute("role", "listitem");
+        card.dataset.index = String(index);
+
+        const sticker = document.createElement("span");
+        sticker.className = "card-sticker";
+        sticker.textContent = stickerEmojis[index % stickerEmojis.length];
+        card.appendChild(sticker);
+
+        const title = document.createElement("h2");
+        title.textContent = project.title;
+
+        const subtitle = document.createElement("span");
+        subtitle.className = "card-subtitle";
         subtitle.textContent = project.subtitle;
         title.appendChild(subtitle);
+        card.appendChild(title);
 
-        const description = document.createElement('p');
+        const description = document.createElement("p");
+        description.className = "card-description";
         description.textContent = project.description;
+        card.appendChild(description);
 
-        const tags = document.createElement('div');
-        tags.className = 'tags';
-        project.tags.forEach((tag) => {
-          const badge = document.createElement('span');
-          badge.className = 'tag';
-          badge.textContent = tag;
-          tags.appendChild(badge);
+        const tagList = document.createElement("ul");
+        tagList.className = "card-tags";
+        project.tags.forEach((tagValue) => {
+          tagList.appendChild(createTag(tagValue));
+        });
+        card.appendChild(tagList);
+
+        const actions = document.createElement("div");
+        actions.className = "card-actions";
+        const href = project.externalUrl || project.href;
+        const link = document.createElement("a");
+        link.href = href;
+        link.target = "_blank";
+        link.rel = "noreferrer noopener";
+        link.textContent = project.linkText;
+        link.setAttribute("aria-label", `Abrir ${project.title} em uma nova aba`);
+        link.append(" ✨");
+        actions.appendChild(link);
+        card.appendChild(actions);
+
+        track.appendChild(card);
+        cards.push(card);
+
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "carousel-dot";
+        dot.dataset.index = String(index);
+        dot.setAttribute("aria-label", `Ir para ${project.title}`);
+        dot.addEventListener("click", () => scrollToIndex(index));
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+      });
+
+      if (cards.length && cards.length <= 2) {
+        wrapper.classList.add("is-compact");
+        track.classList.add("is-compact");
+      }
+
+      if (!cards.length) {
+        prevBtn.setAttribute("disabled", "");
+        nextBtn.setAttribute("disabled", "");
+      }
+
+      const clampIndex = (value) => Math.max(0, Math.min(value, cards.length - 1));
+      const loopIndex = (value) => {
+        if (!cards.length) return 0;
+        const length = cards.length;
+        return ((value % length) + length) % length;
+      };
+
+      function setActive(index) {
+        if (!cards.length) return;
+        currentIndex = LOOP ? loopIndex(index) : clampIndex(index);
+        dots.forEach((dotElement, dotIndex) => {
+          const isActive = dotIndex === currentIndex;
+          dotElement.classList.toggle("is-active", isActive);
+          if (isActive) {
+            dotElement.setAttribute("aria-current", "true");
+          } else {
+            dotElement.removeAttribute("aria-current");
+          }
+        });
+        if (cards.length <= 1) {
+          prevBtn.setAttribute("disabled", "");
+          nextBtn.setAttribute("disabled", "");
+        } else if (LOOP) {
+          prevBtn.removeAttribute("disabled");
+          nextBtn.removeAttribute("disabled");
+        } else {
+          prevBtn.disabled = currentIndex === 0;
+          nextBtn.disabled = currentIndex === cards.length - 1;
+        }
+      }
+
+      function scrollToIndex(index, { smooth = true } = {}) {
+        if (!cards.length) return;
+        const nextIndex = LOOP ? loopIndex(index) : clampIndex(index);
+        const card = cards[nextIndex];
+        if (!card) return;
+        isProgrammaticScroll = true;
+        card.scrollIntoView({ behavior: smooth ? "smooth" : "auto", inline: "center", block: "nearest" });
+        setActive(nextIndex);
+        if (scrollRestTimer) {
+          window.clearTimeout(scrollRestTimer);
+        }
+        scrollRestTimer = window.setTimeout(() => {
+          isProgrammaticScroll = false;
+        }, smooth ? 420 : 120);
+      }
+
+      function updateActiveFromScroll() {
+        if (!cards.length) return;
+        const trackRect = track.getBoundingClientRect();
+        const trackCenter = trackRect.left + trackRect.width / 2;
+        let closestIndex = currentIndex;
+        let smallestDistance = Number.POSITIVE_INFINITY;
+
+        cards.forEach((card, index) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const distance = Math.abs(cardCenter - trackCenter);
+          if (distance < smallestDistance) {
+            smallestDistance = distance;
+            closestIndex = index;
+          }
         });
 
-        const actions = document.createElement('div');
-        actions.className = 'actions';
-        const href = project.externalUrl || project.href;
-        const link = document.createElement('a');
-        link.href = href;
-        link.target = '_blank';
-        link.rel = 'noreferrer';
-        link.textContent = project.linkText;
-        actions.appendChild(link);
+        if (closestIndex !== currentIndex) {
+          setActive(closestIndex);
+        }
+      }
 
-        card.append(title, description, tags, actions);
-        container.appendChild(card);
+      const handleScroll = () => {
+        if (isProgrammaticScroll) return;
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateActiveFromScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
+      function stopAutoplay() {
+        if (autoplayId) {
+          window.clearInterval(autoplayId);
+          autoplayId = null;
+        }
+        if (resumeTimeoutId) {
+          window.clearTimeout(resumeTimeoutId);
+          resumeTimeoutId = null;
+        }
+      }
+
+      function scheduleAutoplayResume() {
+        if (!autoplayShouldRun || cards.length <= 1) return;
+        if (resumeTimeoutId) {
+          window.clearTimeout(resumeTimeoutId);
+        }
+        resumeTimeoutId = window.setTimeout(() => {
+          startAutoplay();
+        }, AUTOPLAY_RESUME_DELAY);
+      }
+
+      function startAutoplay() {
+        if (!autoplayShouldRun || cards.length <= 1) return;
+        stopAutoplay();
+        autoplayId = window.setInterval(() => {
+          scrollToIndex(currentIndex + 1);
+        }, AUTOPLAY_INTERVAL);
+      }
+
+      const userInteracted = () => {
+        stopAutoplay();
+        scheduleAutoplayResume();
+      };
+
+      track.addEventListener("scroll", handleScroll, { passive: true });
+
+      prevBtn.addEventListener("click", () => {
+        scrollToIndex(currentIndex - 1);
+        userInteracted();
       });
+
+      nextBtn.addEventListener("click", () => {
+        scrollToIndex(currentIndex + 1);
+        userInteracted();
+      });
+
+      track.addEventListener("pointerdown", () => {
+        track.classList.add("is-grabbing");
+        userInteracted();
+      });
+      track.addEventListener("pointerup", () => {
+        track.classList.remove("is-grabbing");
+        scheduleAutoplayResume();
+      });
+      track.addEventListener("pointerleave", () => track.classList.remove("is-grabbing"));
+      track.addEventListener("mouseenter", userInteracted);
+      track.addEventListener("mouseleave", scheduleAutoplayResume);
+
+      dotsContainer.addEventListener("click", userInteracted);
+
+      window.addEventListener("focus", startAutoplay);
+      window.addEventListener("blur", stopAutoplay);
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          stopAutoplay();
+        } else {
+          startAutoplay();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        updateActiveFromScroll();
+      });
+
+      setActive(0);
+      updateActiveFromScroll();
+      startAutoplay();
     </script>
   </body>
 </html>
