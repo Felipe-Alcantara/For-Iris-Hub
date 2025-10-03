@@ -225,7 +225,7 @@ function renderHubPage(entries, basePath) {
       <section class="grid" id="projects"></section>
 
       <footer class="note">
-        Projetos publicados com base <code>${basePath}/&lt;slug&gt;/</code>. Atualize <code>Projects/projects.meta.json</code> para personalizar título, descrição e tags.
+        Projetos publicados nesta mesma pasta do GitHub Pages (ex.: <code>${basePath.toLowerCase()}/&lt;slug&gt;/</code>). Atualize <code>Projects/projects.meta.json</code> para personalizar título, descrição e tags.
       </footer>
     </div>
 
@@ -370,7 +370,7 @@ const hubEntries = summary
   .filter((item) => item.action === 'built' || item.action === 'copied')
   .map((item) => ({
     slug: item.slug,
-    href: `${repoBasePath}/${item.slug}/`,
+    href: `./${item.slug}/`,
     title: item.meta.title,
     subtitle: item.meta.subtitle,
     description: item.meta.description,

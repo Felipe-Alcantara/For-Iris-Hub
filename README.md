@@ -19,8 +19,8 @@ For Iris Hub é um portal pessoal que reúne projetos, mini-sites e experiência
 2. Monte o projeto normalmente dentro dessa pasta.
 3. Se for um SPA com bundler (Vite, CRA, etc.), configure a saída para `dist/` ou `build/` e adicione/ajuste o script `npm run build`.
 4. **Vite / React Router**:
-	- defina `base: '/for-iris-hub/<slug>/'` no `vite.config.*` (ou use `HashRouter` / `basename` no React Router).
-	- garanta que as referências a assets usem caminhos relativos ou o `import.meta.env.BASE_URL`.
+	- prefira `base: './'` no `vite.config.*` para que os bundles gerem caminhos relativos e funcionem em qualquer casing da URL do Pages.
+	- se precisar de roteamento, use `HashRouter` ou configure `basename`/`import.meta.env.BASE_URL` com caminhos relativos.
 5. Para projetos estáticos simples, basta garantir um `index.html` pronto para ser copiado.
 6. Atualize `Projects/projects.meta.json` adicionando uma entrada com `slug`, `title`, `subtitle`, `description`, `tags` e, opcionalmente, `externalUrl`/`linkText`.
 
