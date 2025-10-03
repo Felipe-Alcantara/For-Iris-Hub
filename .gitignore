@@ -1,0 +1,6 @@
+# Projetos locais são desenvolvidos em repositórios separados
+# e não devem ser versionados dentro do hub.
+Projects/
+
+# Arquivos temporários de inspeção
+status_spicy*.txt
