@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>For Iris Hub 💜 — projetos</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f6f7fb;
+        --bg-card: rgba(255, 255, 255, 0.85);
+        --border: rgba(20, 24, 39, 0.08);
+        --accent: #a855f7;
+        --accent-strong: #7c3aed;
+        --fg: #1f1b2e;
+        --muted: #5e5875;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(180deg, rgba(240, 241, 250, 1) 0%, rgba(245, 236, 255, 1) 45%, rgba(240, 250, 252, 1) 100%);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 48px 24px 96px;
+        color: var(--fg);
+      }
+
+      .shell {
+        width: min(1060px, 100%);
+        display: grid;
+        gap: 32px;
+      }
+
+      header {
+        display: grid;
+        gap: 12px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        margin: 0;
+      }
+
+      p.subtitle {
+        margin: 0 auto;
+        max-width: 620px;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      }
+
+      .card {
+        position: relative;
+        display: grid;
+        gap: 16px;
+        padding: 24px;
+        border-radius: 20px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        box-shadow: 0 24px 60px -30px rgba(107, 33, 168, 0.3);
+        backdrop-filter: blur(12px);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid transparent;
+        pointer-events: none;
+        transition: border-color 0.25s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 32px 70px -28px rgba(107, 33, 168, 0.5);
+      }
+
+      .card:hover::after {
+        border-color: rgba(168, 85, 247, 0.35);
+      }
+
+      .card h2 {
+        margin: 0;
+        font-size: 1.3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .card h2 span {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--muted);
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(168, 85, 247, 0.12);
+        color: var(--accent-strong);
+      }
+
+      .actions {
+        margin-top: 8px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .actions a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        padding: 10px 16px;
+        border-radius: 999px;
+        font-weight: 600;
+        color: white;
+        background: linear-gradient(120deg, var(--accent) 0%, var(--accent-strong) 100%);
+        box-shadow: 0 12px 24px -15px rgba(124, 58, 237, 0.8);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .actions a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 32px -18px rgba(124, 58, 237, 0.9);
+      }
+
+      footer.note {
+        margin-top: 12px;
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 640px) {
+        body { padding: 32px 16px 64px; }
+        .card { padding: 20px; }
+        .actions { justify-content: flex-start; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <h1>For Iris Hub 💜</h1>
+        <p class="subtitle">
+          Coleção de pequenos projetos, cartas digitais e experiências construídas com carinho. Clique em um card para abrir a versão publicada no GitHub Pages.
+        </p>
+      </header>
+
+      <section class="grid" id="projects"></section>
+
+      <footer class="note">
+        Projetos publicados com base <code>/for-iris-hub/&lt;nome-do-projeto&gt;/</code>. Ajuste o roteamento de SPA (base do Vite ou HashRouter) antes de subir builds.
+      </footer>
+    </div>
+
+    <script>
+      const projects = [
+        {
+          slug: "if",
+          title: "IF — Playlist Especial",
+          subtitle: "HTML estático",
+          description: "Landing page delicada com mensagem e embed da playlist dedicada para Íris.",
+          tags: ["HTML", "CSS"],
+        },
+        {
+          slug: "spicy-game",
+          title: "Couple Night — Game Kit",
+          subtitle: "React · Vite · Tailwind",
+          description: "Jogos e desafios para casal, construído como SPA com animações e motion design.",
+          tags: ["React", "Vite", "Tailwind"],
+        },
+      ];
+
+      const container = document.getElementById("projects");
+
+      projects.forEach((project) => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <h2>
+            ${project.title}
+            <span>${project.subtitle}</span>
+          </h2>
+          <p>${project.description}</p>
+          <div class="tags">
+            ${project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+          </div>
+          <div class="actions">
+            <a href="/for-iris-hub/${project.slug}/" target="_blank" rel="noreferrer">
+              Abrir projeto →
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    </script>
+  </body>
+</html>
