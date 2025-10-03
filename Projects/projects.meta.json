@@ -1,0 +1,18 @@
+[
+  {
+    "directory": "IF",
+    "slug": "if",
+    "title": "IF — Playlist Especial",
+    "subtitle": "HTML estático",
+    "description": "Landing page delicada com carta e playlist dedicada para Íris.",
+    "tags": ["HTML", "CSS"]
+  },
+  {
+    "directory": "SpicyGame",
+    "slug": "spicy-game",
+    "title": "Couple Night — Game Kit",
+    "subtitle": "React · Vite · Tailwind",
+    "description": "Jogos e desafios para casal, construído como SPA com animações e motion design.",
+    "tags": ["React", "Vite", "Tailwind"]
+  }
+]

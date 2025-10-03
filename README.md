@@ -10,6 +10,7 @@ For Iris Hub é um portal pessoal que reúne projetos, mini-sites e experiência
   - `Projects/IF/` — site estático com carta e playlist.
   - `Projects/SpicyGame/` — SPA React+Vite+Tailwind.
 - `docs/` contém os artefatos publicados (um subdiretório por projeto + homepage do hub). Esse diretório é sobrescrito pelo workflow automatizado.
+- `Projects/projects.meta.json` centraliza os metadados (título, descrição, tags) usados para montar a homepage automaticamente a partir da pasta `Projects/`.
 - `.github/workflows/build-and-deploy.yml` monta os artefatos de cada projeto e publica em `docs/` a cada push na `main`.
 
 ## Adicionando um novo projeto
@@ -21,6 +22,7 @@ For Iris Hub é um portal pessoal que reúne projetos, mini-sites e experiência
 	- defina `base: '/for-iris-hub/<slug>/'` no `vite.config.*` (ou use `HashRouter` / `basename` no React Router).
 	- garanta que as referências a assets usem caminhos relativos ou o `import.meta.env.BASE_URL`.
 5. Para projetos estáticos simples, basta garantir um `index.html` pronto para ser copiado.
+6. Atualize `Projects/projects.meta.json` adicionando uma entrada com `slug`, `title`, `subtitle`, `description`, `tags` e, opcionalmente, `externalUrl`/`linkText`.
 
 ## Testando e publicando manualmente
 
@@ -34,24 +36,28 @@ npm run build
 
 Após o build, copie o diretório gerado (`dist/`, `build/` etc.) para `docs/<slug>/`.
 
-### Servindo o hub localmente
+### Regenerando o hub e servindo localmente
 
 ```bash
+node .github/scripts/build-projects.mjs
 npx http-server docs/ -p 8080
 # ou use seu servidor estático favorito
 ```
 
 Abra `http://localhost:8080` para navegar pelo hub. Cada card aponta para `/for-iris-hub/<slug>/`.
 
+> 💡 `node .github/scripts/build-projects.mjs` instala dependências, roda `npm run build` em cada projeto e recria `docs/index.html` com os dados de `Projects/projects.meta.json`.
+
 ### Checklist antes do push
 
 1. Execute os builds individualmente (`npm run build`).
-2. Verifique se `docs/index.html` lista o projeto novo e se o slug bate com o nome do diretório.
-3. Faça três commits separados:
+2. Rode `node .github/scripts/build-projects.mjs` a partir da raiz do repositório para gerar os artefatos e atualizar a homepage.
+3. Verifique se `docs/index.html` lista o projeto novo e se o slug bate com o nome do diretório.
+4. Faça três commits separados:
 	- `fix(project): ...` para alterações dentro do projeto.
 	- `chore(hub): ...` para mudanças em `docs/`, `.nojekyll`, `README.md`, `CONTRIBUTING.md`.
 	- `ci(hub): ...` para updates no workflow.
-4. Faça push para `main`. O workflow `build-and-deploy.yml` irá gerar os artefatos finais em `docs/`.
+5. Faça push para `main`. O workflow `build-and-deploy.yml` irá gerar os artefatos finais em `docs/`.
 
 ## Automação
 

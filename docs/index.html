@@ -174,55 +174,82 @@
       <header>
         <h1>For Iris Hub 💜</h1>
         <p class="subtitle">
-          Coleção de pequenos projetos, cartas digitais e experiências construídas com carinho. Clique em um card para abrir a versão publicada no GitHub Pages.
+          Coleção de projetos publicada automaticamente a partir da pasta <code>Projects/</code>. Cada card leva para a versão hospedada no GitHub Pages.
         </p>
       </header>
 
       <section class="grid" id="projects"></section>
 
       <footer class="note">
-        Projetos publicados com base <code>/for-iris-hub/&lt;nome-do-projeto&gt;/</code>. Ajuste o roteamento de SPA (base do Vite ou HashRouter) antes de subir builds.
+        Projetos publicados com base <code>/for-iris-hub/&lt;slug&gt;/</code>. Atualize <code>Projects/projects.meta.json</code> para personalizar título, descrição e tags.
       </footer>
     </div>
 
     <script>
       const projects = [
-        {
-          slug: "if",
-          title: "IF — Playlist Especial",
-          subtitle: "HTML estático",
-          description: "Landing page delicada com mensagem e embed da playlist dedicada para Íris.",
-          tags: ["HTML", "CSS"],
-        },
-        {
-          slug: "spicy-game",
-          title: "Couple Night — Game Kit",
-          subtitle: "React · Vite · Tailwind",
-          description: "Jogos e desafios para casal, construído como SPA com animações e motion design.",
-          tags: ["React", "Vite", "Tailwind"],
-        },
-      ];
-
-      const container = document.getElementById("projects");
+  {
+    "slug": "if",
+    "href": "/for-iris-hub/if/",
+    "title": "IF — Playlist Especial",
+    "subtitle": "HTML estático",
+    "description": "Landing page delicada com carta e playlist dedicada para Íris.",
+    "tags": [
+      "HTML",
+      "CSS"
+    ],
+    "linkText": "Abrir projeto →",
+    "externalUrl": null
+  },
+  {
+    "slug": "spicy-game",
+    "href": "/for-iris-hub/spicy-game/",
+    "title": "Couple Night — Game Kit",
+    "subtitle": "React · Vite · Tailwind",
+    "description": "Jogos e desafios para casal, construído como SPA com animações e motion design.",
+    "tags": [
+      "React",
+      "Vite",
+      "Tailwind"
+    ],
+    "linkText": "Abrir projeto →",
+    "externalUrl": null
+  }
+];
+      const container = document.getElementById('projects');
 
       projects.forEach((project) => {
-        const card = document.createElement("article");
-        card.className = "card";
-        card.innerHTML = `
-          <h2>
-            ${project.title}
-            <span>${project.subtitle}</span>
-          </h2>
-          <p>${project.description}</p>
-          <div class="tags">
-            ${project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
-          </div>
-          <div class="actions">
-            <a href="/for-iris-hub/${project.slug}/" target="_blank" rel="noreferrer">
-              Abrir projeto →
-            </a>
-          </div>
-        `;
+        const card = document.createElement('article');
+        card.className = 'card';
+
+        const title = document.createElement('h2');
+        title.append(project.title);
+        const subtitle = document.createElement('span');
+        subtitle.textContent = project.subtitle;
+        title.appendChild(subtitle);
+
+        const description = document.createElement('p');
+        description.textContent = project.description;
+
+        const tags = document.createElement('div');
+        tags.className = 'tags';
+        project.tags.forEach((tag) => {
+          const badge = document.createElement('span');
+          badge.className = 'tag';
+          badge.textContent = tag;
+          tags.appendChild(badge);
+        });
+
+        const actions = document.createElement('div');
+        actions.className = 'actions';
+        const href = project.externalUrl || project.href;
+        const link = document.createElement('a');
+        link.href = href;
+        link.target = '_blank';
+        link.rel = 'noreferrer';
+        link.textContent = project.linkText;
+        actions.appendChild(link);
+
+        card.append(title, description, tags, actions);
         container.appendChild(card);
       });
     </script>
